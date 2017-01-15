@@ -14,8 +14,8 @@ module Tram
     require_relative "value/struct"
 
     class << self
-      def self.included
-        include Constructors
+      def inherited(klass)
+        klass.extend Constructors
       end
 
       # Makes any class or a proc to quack like value object (same API)

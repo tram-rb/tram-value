@@ -1,20 +1,20 @@
 # Defines a bunch of constructors shared by specific wrappers
 module Tram::Value::Constructors
   # Aliases for the constructor
-  def new(*args)
+  def new(source)
     super
   end
 
-  def call(*args)
-    new(*args)
+  def call(source)
+    new(source)
   end
 
-  def [](*args)
-    new(*args)
+  def [](source)
+    new(source)
   end
 
-  def load(*args)
-    new(*args)
+  def load(source)
+    new(source)
   end
 
   # Side effects to embellish a constructor with
