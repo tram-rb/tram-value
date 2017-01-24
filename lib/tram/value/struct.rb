@@ -7,17 +7,8 @@ class Tram::Value
       def attribute(name, *args, **opts)
         @attributes = attributes | [name.to_sym]
 
-        # FIXME: remove this hack after dry-initializer v0.12.0
         opts[:optional] = true
         option(name, *args, **opts)
-
-        attributes.each do |key|
-          class_eval <<-RUBY
-            def #{key}
-              @#{key} unless @#{key} == Dry::Initializer::UNDEFINED
-            end
-          RUBY
-        end
       end
 
       def attributes
