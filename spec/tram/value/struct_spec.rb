@@ -86,6 +86,22 @@ RSpec.describe Tram::Value::Struct do
     end
   end
 
+  describe ".valid" do
+    subject { Test::User.valid[source] }
+
+    context "with valid data" do
+      it { is_expected.to eq Test::User[source] }
+    end
+
+    context "with invalid data" do
+      before { source.delete :first_name }
+
+      it "raises" do
+        expect { subject }.to raise_error ActiveModel::ValidationError, /blank/
+      end
+    end
+  end
+
   describe "#==" do
     subject { Test::User[source] }
 

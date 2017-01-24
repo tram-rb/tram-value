@@ -6,7 +6,7 @@ module Tram::Value::Constructors
   #
   class Valid < Base
     def new(*args)
-      super.tap { |obj| raise if obj.respond_to?(:invalid?) && obj.invalid? }
+      super.tap { |obj| obj.validate! if obj.respond_to? :validate! }
     end
   end
 end
