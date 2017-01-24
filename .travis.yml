@@ -1,5 +1,15 @@
-sudo: false
+---
 language: ruby
+sudo: false
+cache: bundler
+bundler_args: --without benchmarks tools
+script:
+  - bundle exec rake spec
 rvm:
-  - 2.3.3
-before_install: gem install bundler -v 1.13.6
+  - 2.2
+  - 2.3.0
+  - 2.4.0
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
